@@ -20,5 +20,10 @@ namespace BuisnessLogic.Services
         {
             return userRepository.Register(model);
         }
+
+        public string Login(LoginModel login)
+        {
+            return userRepository.Login(login);
+        }
     }
 }

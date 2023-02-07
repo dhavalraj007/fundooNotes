@@ -17,6 +17,7 @@ namespace fundooNotes.Controllers
         {
             this.userBuisness = userBuisness;
         }
+
         [HttpPost]
         [Route("Register")]
         public IActionResult Register(RegisterModel model)
@@ -27,6 +28,19 @@ namespace fundooNotes.Controllers
             }
             else
                 return BadRequest(new ResponseModel<UserEntity> { Status = false, Message = "Register UnSuccessful", Data = userEntity });
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult Login(LoginModel login)
+        {
+            string jwt = userBuisness.Login(login);
+            if (jwt != null)
+            {
+                return Ok(new ResponseModel<string> { Status = true, Message = "login Successful", Data = jwt});
+            }
+            else
+                return BadRequest(new ResponseModel<string> { Status = false, Message = "Register UnSuccessful", Data = jwt });
         }
     }
 }

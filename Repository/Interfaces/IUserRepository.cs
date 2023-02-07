@@ -9,5 +9,7 @@ namespace Repository.Interfaces
     public interface IUserRepository
     {
         public UserEntity Register(RegisterModel model);
+        public string Login(LoginModel login);
+
     }
 }

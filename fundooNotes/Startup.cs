@@ -37,6 +37,7 @@ namespace fundooNotes
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:FundooDB"]);
             });
+            services.AddSwaggerGen();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserBuisness, UserBuisness>();
         }
@@ -47,6 +48,8 @@ namespace fundooNotes
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
