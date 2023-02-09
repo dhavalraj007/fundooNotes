@@ -1,9 +1,11 @@
 ﻿
 using BuisnessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Repository.Entity;
+using System.Linq;
 
 namespace fundooNotes.Controllers
 {
@@ -41,6 +43,36 @@ namespace fundooNotes.Controllers
             }
             else
                 return BadRequest(new ResponseModel<string> { Status = false, Message = "Register UnSuccessful", Data = jwt });
+        }
+
+        [HttpPost]
+        [Route("ForgetPassword")]
+        public IActionResult ForgetPassword(string Email)
+        {
+            var forget = userBuisness.ForgetPassword(Email);
+
+            if (forget!= null)
+            {
+                return Ok(new ResponseModel<string> { Status = true, Message = "Mail sent Successfully", Data = forget});
+            }
+            else
+                return BadRequest(new ResponseModel<string> { Status = false, Message = "Mail not sent", Data = forget});
+        }
+
+        [Authorize]
+        [HttpPatch]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword(ResetPassword resetPassword)
+        {
+            var Email = User.Claims.FirstOrDefault(c => c.Type== "Email").Value;
+            var reset = userBuisness.ResetPassword(resetPassword,Email.ToString());
+
+            if (reset != null)
+            {
+                return Ok(new ResponseModel<string> { Status = true, Message = " reset Successfully", Data = reset });
+            }
+            else
+                return BadRequest(new ResponseModel<string> { Status = false, Message = "reset failed", Data = reset });
         }
     }
 }

@@ -25,5 +25,19 @@ namespace BuisnessLogic.Services
         {
             return userRepository.Login(login);
         }
+        public string ForgetPassword(string Email)
+        {
+            return userRepository.ForgetPassword(Email);
+        }
+
+        public string ResetPassword(ResetPassword resetPassword, string Email)
+        {
+            return userRepository.ResetPassword(resetPassword, Email);
+        }
+
+        public UserTicket CreateTicketForPassword(string Email, string Password)
+        {
+            return userRepository.CreateTicketForPassword(Email, Password);
+        }
     }
 }

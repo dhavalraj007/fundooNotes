@@ -11,5 +11,10 @@ namespace Repository.Interfaces
         public UserEntity Register(RegisterModel model);
         public string Login(LoginModel login);
 
+        public string ForgetPassword(string Email);
+        public string ResetPassword(ResetPassword resetPassword, string Email);
+        public UserTicket CreateTicketForPassword(string Email, string Password)
+
+
     }
 }

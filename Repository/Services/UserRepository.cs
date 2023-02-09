@@ -78,5 +78,55 @@ namespace Repository.Services
                 );
             return new JwtSecurityTokenHandler().WriteToken(tocken);
         }
+
+        public string ForgetPassword(string Email)
+        {
+            var EmailCheck = context.UserTable.Where(b=>b.Email== Email).FirstOrDefault();
+            if (EmailCheck!=null)
+            {
+                var token = GenerateJWTToken(EmailCheck.Email, EmailCheck.UserId);
+                new MSMQ().SendMessage(token, EmailCheck.Email, EmailCheck.FirstName);
+                return token;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string ResetPassword(ResetPassword resetPassword,string Email)
+        {
+            if (resetPassword.Password.Equals(resetPassword.ConfirmPassword))
+            {
+                var EmailCheck = context.UserTable.Where(rec => rec.Email == Email).FirstOrDefault();
+                EmailCheck.Password = EncryptPassword(resetPassword.Password);
+                context.SaveChanges();
+                return "reset succesfull";
+            }
+            else
+                return null;
+
+        }
+
+        public UserTicket CreateTicketForPassword(string Email,string Password)
+        {
+            var userCheck = context.UserTable.FirstOrDefault(c => c.Email == Email);
+            if (userCheck!=null)
+            {
+                UserTicket ticket = new UserTicket
+                {
+                    FirstName = userCheck.FirstName,
+                    LastName = userCheck.LastName,
+                    Email = userCheck.Email,
+                    token = GenerateJWTToken(Email, userCheck.UserId),
+                    CreatedAt = DateTime.Now
+                };
+                return ticket;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
