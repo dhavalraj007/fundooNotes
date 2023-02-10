@@ -108,7 +108,7 @@ namespace Repository.Services
 
         }
 
-        public UserTicket CreateTicketForPassword(string Email,string Password)
+        public UserTicket CreateTicketForPassword(string Email,string token)
         {
             var userCheck = context.UserTable.FirstOrDefault(c => c.Email == Email);
             if (userCheck!=null)
@@ -118,7 +118,7 @@ namespace Repository.Services
                     FirstName = userCheck.FirstName,
                     LastName = userCheck.LastName,
                     Email = userCheck.Email,
-                    token = GenerateJWTToken(Email, userCheck.UserId),
+                    token=token,
                     CreatedAt = DateTime.Now
                 };
                 return ticket;

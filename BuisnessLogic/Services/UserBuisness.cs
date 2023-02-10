@@ -35,9 +35,9 @@ namespace BuisnessLogic.Services
             return userRepository.ResetPassword(resetPassword, Email);
         }
 
-        public UserTicket CreateTicketForPassword(string Email, string Password)
+        public UserTicket CreateTicketForPassword(string Email,string token)
         {
-            return userRepository.CreateTicketForPassword(Email, Password);
+            return userRepository.CreateTicketForPassword(Email,token);
         }
     }
 }

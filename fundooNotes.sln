@@ -5,11 +5,13 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fundooNotes", "fundooNotes\fundooNotes.csproj", "{758F8A52-4414-4AE1-B202-371AF7B53A77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuisnessLogic", "BuisnessLogic\BuisnessLogic.csproj", "{290B04BE-EC9A-464E-931C-0CD240120C40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuisnessLogic", "BuisnessLogic\BuisnessLogic.csproj", "{290B04BE-EC9A-464E-931C-0CD240120C40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{662A38EA-2D2A-4B80-8852-3569221565B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{D9725587-1043-4433-870E-B16EF93DAA46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{D9725587-1043-4433-870E-B16EF93DAA46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketConsumer", "TicketConsumer\TicketConsumer.csproj", "{C0F7EDC8-32A4-4A16-BF3B-58E326770711}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D9725587-1043-4433-870E-B16EF93DAA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9725587-1043-4433-870E-B16EF93DAA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9725587-1043-4433-870E-B16EF93DAA46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F7EDC8-32A4-4A16-BF3B-58E326770711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F7EDC8-32A4-4A16-BF3B-58E326770711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F7EDC8-32A4-4A16-BF3B-58E326770711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F7EDC8-32A4-4A16-BF3B-58E326770711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

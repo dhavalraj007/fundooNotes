@@ -13,8 +13,6 @@ namespace BuisnessLogic.Interfaces
         public string ForgetPassword(string Email);
 
         public string ResetPassword(ResetPassword resetPassword, string Email);
-        public UserTicket CreateTicketForPassword(string Email, string Password)
-
-
+        public UserTicket CreateTicketForPassword(string Email,string token);
     }
 }
