@@ -23,7 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fundooNotes
+namespace fundooNotes   
 {
     public class Startup
     {
@@ -57,6 +57,8 @@ namespace fundooNotes
             });
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserBuisness, UserBuisness>();
+            services.AddTransient<INoteRepository, NoteRepository>();
+            services.AddTransient<INoteBuisness, NoteBuisness>();
             services.AddSwaggerGen(c =>
             {
                /* c.SwaggerDoc(

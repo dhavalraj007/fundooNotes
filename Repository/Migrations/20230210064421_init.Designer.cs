@@ -10,8 +10,8 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(FundooContext))]
-    [Migration("20230206062342_notes")]
-    partial class notes
+    [Migration("20230210064421_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,11 +21,36 @@ namespace Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Repository.Entity.LabelEntity", b =>
+                {
+                    b.Property<long>("LabelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LabelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("NoteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("LabelId");
+
+                    b.HasIndex("NoteId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LabelTable");
+                });
+
             modelBuilder.Entity("Repository.Entity.NoteEntity", b =>
                 {
-                    b.Property<int>("NoteId")
+                    b.Property<long>("NoteId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Color")
@@ -90,6 +115,21 @@ namespace Repository.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("UserTable");
+                });
+
+            modelBuilder.Entity("Repository.Entity.LabelEntity", b =>
+                {
+                    b.HasOne("Repository.Entity.NoteEntity", "Note")
+                        .WithMany()
+                        .HasForeignKey("NoteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Repository.Entity.UserEntity", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Repository.Entity.NoteEntity", b =>

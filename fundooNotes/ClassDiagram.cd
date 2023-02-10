@@ -1,48 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="fundooNotes.Controllers.UserController">
-    <Position X="4.5" Y="3.75" Width="2.25" />
+    <Position X="10" Y="3.25" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAQAAAAAAAAAAAABAAAAAAEQAAAAAAA=</HashCode>
       <FileName>Controllers\UserController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.RegisterModel">
-    <Position X="10.25" Y="0.5" Width="1.75" />
+    <Position X="12.5" Y="0.5" Width="2.25" />
     <TypeIdentifier />
   </Class>
   <Class Name="Model.ResponseModel&lt;T&gt;">
-    <Position X="10.25" Y="3" Width="1.75" />
+    <Position X="9.75" Y="0.5" Width="2.25" />
     <TypeIdentifier />
   </Class>
   <Class Name="Repository.Context.FundooContext">
-    <Position X="0.5" Y="1" Width="1.75" />
+    <Position X="0.5" Y="1" Width="3" />
     <TypeIdentifier />
   </Class>
   <Class Name="Repository.Entity.NoteEntity" Collapsed="true">
-    <Position X="2.5" Y="1" Width="1.5" />
+    <Position X="3.75" Y="1" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Repository.Entity.UserEntity">
-    <Position X="4.75" Y="0.75" Width="1.75" />
+    <Position X="6" Y="0.5" Width="2.25" />
     <TypeIdentifier />
   </Class>
   <Class Name="Repository.Services.UserRepository" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="5" Width="1.75" />
+    <Position X="0.5" Y="5.5" Width="4.5" />
     <TypeIdentifier />
     <Lollipop Position="0.167" />
   </Class>
   <Class Name="BuisnessLogic.Services.UserBuisness">
-    <Position X="2.25" Y="5" Width="1.75" />
+    <Position X="5.25" Y="5.5" Width="4.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="Repository.Interfaces.IUserRepository">
-    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Position X="0.5" Y="3.25" Width="4.5" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="BuisnessLogic.Interfaces.IUserBuisness">
-    <Position X="2.25" Y="3.25" Width="1.75" />
+    <Position X="5.25" Y="3.25" Width="4.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />
