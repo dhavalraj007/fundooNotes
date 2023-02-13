@@ -21,11 +21,36 @@ namespace BuisnessLogic.Services
         {
             return noteRepository.AddNote(model, UserId);
         }
+        public NoteEntity GetNote(long NoteId, long UserId)
+        {
+            return noteRepository.GetNote(NoteId, UserId);
+        }
 
+        public bool DeleteNote(long NoteId, long UserId)
+        {
+            return noteRepository.DeleteNote(NoteId, UserId);
+        }
         public List<NoteEntity> GetAllNotes(long UserId)
         {
             return noteRepository.GetAllNotes(UserId);
+        }   
+
+        public List<NoteEntity> GetAllOfNotes()
+        {
+            return noteRepository.GetAllOfNotes();
         }
 
+        public bool TooglePin(long NoteId, long UserId)
+        {
+            return noteRepository.TooglePin(NoteId, UserId);
+        }
+        public bool ToogleArchive(long NoteId, long UserId)
+        {
+            return noteRepository.ToogleArchive(NoteId, UserId);
+        } 
+        public bool ToogleTrash(long NoteId, long UserId)
+        {
+            return noteRepository.ToogleTrash(NoteId, UserId);
+        }
     }
 }

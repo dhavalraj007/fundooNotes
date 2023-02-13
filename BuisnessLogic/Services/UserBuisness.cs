@@ -39,5 +39,11 @@ namespace BuisnessLogic.Services
         {
             return userRepository.CreateTicketForPassword(Email,token);
         }
+
+        public List<UserEntity> GetAllUsers()
+        {
+            return userRepository.GetAllUsers();
+        }
+
     }
 }

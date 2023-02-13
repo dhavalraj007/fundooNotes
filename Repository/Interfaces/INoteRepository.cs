@@ -9,7 +9,16 @@ namespace Repository.Interfaces
     public interface INoteRepository
     {
         public NoteEntity AddNote(NoteModel model, long UserId);
+        public NoteEntity GetNote(long NoteId, long UserId);
+        public bool DeleteNote(long NoteId, long UserId);
+
         public List<NoteEntity> GetAllNotes(long UserId);
+        public List<NoteEntity> GetAllOfNotes();
+
+        public bool TooglePin(long NoteId, long UserId);
+        public bool ToogleArchive(long NoteId, long UserId);
+        public bool ToogleTrash(long NoteId, long UserId);
+
 
     }
 }

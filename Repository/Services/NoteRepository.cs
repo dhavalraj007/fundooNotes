@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 
 namespace Repository.Services
@@ -45,6 +46,75 @@ namespace Repository.Services
                 return note;
             return null;
         }
+        public NoteEntity GetNote(long NoteId, long UserId)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId == NoteId && rec.UserId == UserId).FirstOrDefault();
+            return note;
+        }
+
+        public bool DeleteNote(long NoteId, long UserId)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId == NoteId && rec.UserId == UserId).FirstOrDefault();
+            if(note == null) return false;
+            context.NoteTable.Remove(note);
+            context.SaveChanges();
+            return true;
+        }
+
+        public bool TooglePin(long NoteId, long UserId)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId==NoteId && rec.UserId==UserId).FirstOrDefault();
+            
+            if (note.IsPinned)
+            {
+                note.IsPinned = false;
+                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                note.IsPinned = true;
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool ToogleArchive(long NoteId, long UserId)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId == NoteId && rec.UserId == UserId).FirstOrDefault();
+
+            if (note.IsArchived)
+            {
+                note.IsArchived = false;
+                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                note.IsArchived = true;
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool ToogleTrash(long NoteId, long UserId)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId == NoteId && rec.UserId == UserId).FirstOrDefault();
+
+            if (note.IsTrash)
+            {
+                note.IsTrash = false;
+                context.SaveChanges();
+                return false;
+            }
+            else
+            {
+                note.IsTrash = true;
+                context.SaveChanges();
+                return true;
+            }
+        }
+
 
         public List<NoteEntity> GetAllNotes(long UserId) 
         {
@@ -53,6 +123,11 @@ namespace Repository.Services
                       select note).ToList();
             return res;
         }
-        
+        public List<NoteEntity> GetAllOfNotes()
+        {
+            var res = context.NoteTable.ToList();
+            return res;
+        }
+
     }
 }

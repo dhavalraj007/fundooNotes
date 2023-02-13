@@ -59,6 +59,12 @@ namespace fundooNotes
             services.AddTransient<IUserBuisness, UserBuisness>();
             services.AddTransient<INoteRepository, NoteRepository>();
             services.AddTransient<INoteBuisness, NoteBuisness>();
+            services.AddTransient<ILabelBuisness, LabelBuisness>();
+            services.AddTransient<ILabelRepository, LabelRepository>();
+
+            services.AddMemoryCache();
+            services.AddStackExchangeRedisCache(options => { options.Configuration = "localhost:6379"; });
+
             services.AddSwaggerGen(c =>
             {
                /* c.SwaggerDoc(

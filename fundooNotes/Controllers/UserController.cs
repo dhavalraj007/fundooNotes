@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Repository.Entity;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace fundooNotes.Controllers
@@ -73,6 +74,20 @@ namespace fundooNotes.Controllers
             }
             else
                 return BadRequest(new ResponseModel<string> { Status = false, Message = "reset failed", Data = reset });
+        }
+
+
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public IActionResult GetAllUsers()
+        {
+            var users = userBuisness.GetAllUsers();
+            if(users!=null)
+            {
+                return Ok(new ResponseModel<List<UserEntity>> { Status = true, Message = " GetAllUsers Successfully executed", Data = users});
+            }
+            else
+                return BadRequest(new ResponseModel<List<UserEntity>> { Status = true, Message = " GetAllUsers failed", Data = users }); 
         }
     }
 }

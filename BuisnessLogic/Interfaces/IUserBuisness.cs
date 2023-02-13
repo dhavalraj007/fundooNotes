@@ -14,5 +14,7 @@ namespace BuisnessLogic.Interfaces
 
         public string ResetPassword(ResetPassword resetPassword, string Email);
         public UserTicket CreateTicketForPassword(string Email,string token);
+
+        public List<UserEntity> GetAllUsers();
     }
 }

@@ -128,5 +128,11 @@ namespace Repository.Services
                 return null;
             }
         }
+
+        public List<UserEntity> GetAllUsers()
+        {
+            List<UserEntity> users = context.UserTable.ToList();
+            return users;
+        }
     }
 }
