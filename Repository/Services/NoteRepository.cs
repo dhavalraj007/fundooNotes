@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Model;
 using Repository.Context;
 using Repository.Entity;
@@ -113,6 +116,35 @@ namespace Repository.Services
                 context.SaveChanges();
                 return true;
             }
+        }
+        public bool DeleteForever(long NoteId, long UserId)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId == NoteId && rec.UserId == UserId).FirstOrDefault();
+
+            if (note.IsTrash)
+            {
+                context.Remove(note);
+                return context.SaveChanges()>0;
+            }
+            return false;
+            
+        }
+
+        public string UploadImage(long NoteId,long UserId,IFormFile img)
+        {
+            NoteEntity note = context.NoteTable.Where(rec => rec.NoteId == NoteId && rec.UserId == UserId).FirstOrDefault();
+
+            Cloudinary cloudinary = new Cloudinary(new Account(configuration["Cloudinary:CloudName"], configuration["Cloudinary:ApiKey"], configuration["Cloudinary:ApiSecret"]));
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(img.FileName, img.OpenReadStream())
+            };
+
+            var result = cloudinary.Upload(uploadParams);
+            string imgPath = result.Url.ToString();
+            note.Image= imgPath;
+            context.SaveChanges();
+            return imgPath;
         }
 
 

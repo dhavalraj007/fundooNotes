@@ -61,6 +61,8 @@ namespace fundooNotes
             services.AddTransient<INoteBuisness, NoteBuisness>();
             services.AddTransient<ILabelBuisness, LabelBuisness>();
             services.AddTransient<ILabelRepository, LabelRepository>();
+            services.AddTransient<ICollabBuisness, CollabBuisness>();
+            services.AddTransient<ICollabRepository, CollabRepository>();
 
             services.AddMemoryCache();
             services.AddStackExchangeRedisCache(options => { options.Configuration = "localhost:6379"; });

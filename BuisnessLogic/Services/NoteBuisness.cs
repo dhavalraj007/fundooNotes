@@ -1,4 +1,5 @@
 ﻿using BuisnessLogic.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Model;
 using Repository.Entity;
 using Repository.Interfaces;
@@ -30,6 +31,11 @@ namespace BuisnessLogic.Services
         {
             return noteRepository.DeleteNote(NoteId, UserId);
         }
+
+        public string UploadImage(long NoteId, long UserId, IFormFile img)
+        {
+            return noteRepository.UploadImage(NoteId, UserId, img);
+        }
         public List<NoteEntity> GetAllNotes(long UserId)
         {
             return noteRepository.GetAllNotes(UserId);
@@ -51,6 +57,10 @@ namespace BuisnessLogic.Services
         public bool ToogleTrash(long NoteId, long UserId)
         {
             return noteRepository.ToogleTrash(NoteId, UserId);
+        }
+        public bool DeleteForever(long NoteId, long UserId)
+        {
+            return noteRepository.DeleteForever(NoteId, UserId);
         }
     }
 }

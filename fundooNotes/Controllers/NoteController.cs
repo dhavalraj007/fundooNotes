@@ -122,6 +122,18 @@ namespace fundooNotes.Controllers
 
         }
 
+        [HttpPut("UploadImage")]
+        public IActionResult UploadImage(long NoteId,IFormFile img)
+        {
+            long UserId = Int64.Parse(User.Claims.FirstOrDefault(r => r.Type == "UserId").Value);
+            var res = noteBuisness.UploadImage(NoteId,UserId,img);
+            if(res!=null)
+            {
+                return Ok(new ResponseModel<string> { Status = true, Message = "image uploaded succesfully", Data = res });
+            }
+            return BadRequest(new ResponseModel<string> { Status = true, Message = "image upload failed", Data = res });
+        }
+
 
 
         [HttpPut("TooglePin")]
@@ -158,6 +170,23 @@ namespace fundooNotes.Controllers
             }
             return Ok(new ResponseModel<bool> { Status = true, Message = "Note UnTrashed succesfully", Data = noteTrash });
         }
+
+        [HttpPut("DeleteForever")]
+        public IActionResult DeleteForever(long NoteId)
+        {
+            long UserId = Int64.Parse(User.Claims.FirstOrDefault(r => r.Type == "UserId").Value);
+            var noteTrash = noteBuisness.DeleteForever(NoteId, UserId);
+            if (noteTrash)
+            {
+                return Ok(new ResponseModel<bool> { Status = true, Message = "Note Delete Forever succesfully", Data = noteTrash });
+            }
+            return Ok(new ResponseModel<bool> { Status = true, Message = "Note Delete Forever succesfully", Data = noteTrash });
+        }
+
+
+
+        //delete forever
+        // color,reminder
 
     }
 }

@@ -35,6 +35,36 @@ namespace Repository.Services
             return null;
         }
 
+        public LabelEntity UpdateLabelName(string newLabelName,long LabelId,long NoteId,long UserId)
+        {
+            var lab = (from label in context.LabelTable
+                      where label.UserId == UserId && label.NoteId==NoteId && label.LabelId== LabelId
+                      select label).FirstOrDefault();
+            lab.LabelName = newLabelName;
+            int res = context.SaveChanges();
+            if (res > 0)
+                return lab;
+            return null;
+        } 
+
+        public bool DeleteLabel(long LabelId,long NoteId,long UserId)
+        {
+            var lab = (from label in context.LabelTable
+                       where label.UserId == UserId && label.NoteId == NoteId && label.LabelId == LabelId
+                       select label).FirstOrDefault();
+            context.LabelTable.Remove(lab);
+            return context.SaveChanges() > 0;
+        }
+        public LabelEntity GetLabel(long LabelId,long NoteId,long UserId)
+        {
+            var lab = (from label in context.LabelTable
+                       where label.UserId == UserId && label.NoteId == NoteId && label.LabelId == LabelId
+                       select label).FirstOrDefault();
+
+            return lab;
+        }
+
+        
         public List<LabelEntity> GetAllLabels(long NoteId, long UserId)
         {
             var res = (from label in context.LabelTable.Cast<LabelEntity>()
